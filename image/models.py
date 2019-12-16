@@ -1,4 +1,7 @@
 from django.db import models
+import datetime as dt
+
+
 
 # Create your models here.
 
@@ -31,16 +34,16 @@ class Image(models.Model):
     image_descprition = models.CharField(max_length=150)
     location = models.ForeignKey(Location,on_delete=models.CASCADE)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
-    
+    pub_date = models.DateTimeField(auto_now_add=True)
+
     @classmethod
-    def get_image_by_id(cls,id):
-        image = cls.objects.get(id = id)
-        
-        return image
+    def todays_image(cls):
+        today = dt.date.today()
+        images = cls.objects.filter(pub_date__date = today)
+        return images
     @classmethod
-    def search_image(cls,categorys):
-        images = cls.objects.filter(category__name = categorys)
-        
+    def days_image(cls,date):
+        images = cls.objects.filter(pub_date__date = date)
         return images
     
     @classmethod
@@ -55,3 +58,9 @@ class Image(models.Model):
         
     def delete_image(self):
         self.delete()
+        
+
+    def __str__(self):
+        return self.image_name
+    class Meta:
+        ordering = ['image_name']

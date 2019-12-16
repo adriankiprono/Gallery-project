@@ -1,5 +1,7 @@
 from django.test import TestCase
 from .models import *
+import datetime as dt
+
 # Create your tests here.
 
 class LocationTestClass(TestCase):
@@ -80,7 +82,11 @@ class ImageTestClass(TestCase):
         self.image = Image(image='images/lagoon.jpeg',image_name='dan', image_descprition='he is cool',location=self.nakuru,category=self.nature, id=1)
         
     def test_instance(self):
-        self.assertTrue(isinstance(self.image,Image)) 
+        self.assertTrue(isinstance(self.image,Image))
+    def test_get_news_today(self):
+        today_image = Article.todays_images()
+        self.assertTrue(len(today_images)>0)
+    
 
         
         

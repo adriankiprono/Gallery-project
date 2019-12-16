@@ -1,28 +1,19 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404
 import datetime as dt
-
-
+from .models import Image
 
 # Create your views here.
 def welcome(request):
     return render(request, 'welcome.html')
     
-def news_of_day(request):
+def image_today(request):
     date = dt.date.today()
-    return render(request, 'all-news/today-news.html', {"date": date,})
+    images=Image.todays_image()
+    return render(request, 'all-image/today-image.html', {"date": date,"images":images})
 
    
-def news_of_day(request):
-    date = dt.date.today()
-    html = f'''
-        <html>
-            <body>
-                <h1> {date.day}-{date.month}-{date.year}</h1>
-            </body>
-        </html>
-            '''
-    return HttpResponse(html)
+
 def convert_dates(dates):
     
     # Function that gets the weekday number for the date.
@@ -33,19 +24,7 @@ def convert_dates(dates):
     # Returning the actual day of the week
     day = days[day_number]
     return day
-def news_of_day(request):
-    date = dt.date.today()
 
-    # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
-    day = convert_dates(date)
-    html = f'''
-        <html>
-            <body>
-                <h1>News for {day} {date.day}-{date.month}-{date.year}</h1>
-            </body>
-        </html>
-            '''
-    return HttpResponse(html)
 def past_days_news(request,past_date):
 
     try:
@@ -64,9 +43,6 @@ def past_days_news(request,past_date):
         </html>
             '''
     return HttpResponse(html)
-def news_of_day(request):
-    date = dt.date.today()
-    return render(request, 'all-image/today-news.html', {"date": date,})
 
 
 def past_days_news(request, past_date):
@@ -83,4 +59,5 @@ def past_days_news(request, past_date):
     if date == dt.date.today():
         return redirect(news_of_day)
 
-    return render(request, 'all-image/past-news.html', {"date": date})
+    images = Image.days_image(date)
+    return render(request, 'all-image/past-image.html', {"date": date,"images":images})
