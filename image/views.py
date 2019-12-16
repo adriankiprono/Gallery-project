@@ -62,12 +62,12 @@ def past_days_news(request, past_date):
     return render(request, 'all-image/past-image.html', {"date": date,"images":images})
 def search_results(request):
     
-    if 'images' in request.GET and request.GET["image"]:
-        search_term = request.GET.get("image")
-        searched_articles = Article.search_by_title(search_term)
+    if 'photos' in request.GET and request.GET["photos"]:
+        search_term = request.GET.get("photos")
+        searched_photos = Image.search_by_category(search_term)
         message = f"{search_term}"
 
-        return render(request, 'all-image/search.html',{"message":message,"image": searched_images})
+        return render(request, 'all-image/search.html',{"message":message,"image": searched_photos})
 
     else:
         message = "You haven't searched for any term"

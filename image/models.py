@@ -45,10 +45,13 @@ class Image(models.Model):
     def days_image(cls,date):
         images = cls.objects.filter(pub_date__date = date)
         return images
-    def search_image(cls,categorys):
-        images = cls.objects.filter(category__name = categorys)
+    @classmethod
+    def search_image(cls,search_term):
+
+        Category = Category.objects.filter(name__icontains = search_term)
+        pic_results= cls.objects.filter(category_id=category)
         
-        return images
+        return pic_results
     
     
     @classmethod
