@@ -45,6 +45,11 @@ class Image(models.Model):
     def days_image(cls,date):
         images = cls.objects.filter(pub_date__date = date)
         return images
+    def search_image(cls,categorys):
+        images = cls.objects.filter(category__name = categorys)
+        
+        return images
+    
     
     @classmethod
     def filter_by_location(cls,location):
