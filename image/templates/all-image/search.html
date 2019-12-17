@@ -3,8 +3,8 @@
 <div class="container">
 
   <div class="row">
-    {% if photos%}
-      <h2>Found {{ photos|length }} of searched term {{message}}</h2>
+    {% if images%}
+      <h2>Found {{ images|length }} of searched term {{message}}</h2>
     {% else %}
       <h2> Found 0 images for the search image {{message}}</h2>
     {% endif %}
@@ -13,11 +13,11 @@
 
   <div class="row">
 
-  {% if photo %}
-    {% for photo  in photos %}
+  {% if image %}
+    {% for image  in images %}
       <div class="col-sm-6 col-md-3">
-          <h1>{{photo.name}}</h1>
-          <p>{{photo.description}}</p>
+          <h1>{{image.name}}</h1>
+          <p>{{image.description}}</p>
       </div>
     {% endfor %}
   {% endif %}

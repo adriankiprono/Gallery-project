@@ -44,8 +44,8 @@ class Image(models.Model):
         images = cls.objects.filter(pub_date__date = date)
         return images
     @classmethod
-    def search_by_title(cls,search_term):
-        images = cls.objects.filter(title__icontains=search_term)
+    def search_by_name(cls,search_term):
+        images = cls.objects.filter(name__icontains=search_term)
         return images
     @classmethod
     def filter_by_location(cls,location):
