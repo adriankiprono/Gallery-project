@@ -1,33 +1,62 @@
 {%extends 'all-image/base.html'%}
 
-
 {% block content %}
 {{block.super}}
+
+
+
 <div class="container">
+    
+  {%if images%}
+  
+    
+    <div class="row">
 
-        <!-- Looping through news   -->
-        {% for image_item in images %}
-      
-        <div class="row">
-          <!-- displaying News articles -->
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h2 class="text-center"> {{ image_item.image_name }} </h2>
+      <h1 class="text-center" >ALL IMAGES</h1>
+            {% for image in images %}
+            
+          <div class="col-md-4 pt"  data-toggle="modal" data-target="#{{image.id}}" >
+                <div class="card "  style="width:16rem;">
+                   <img src="{{image.image.url}}" alt="{{image.image.name}}"   class="card-img-top"  width="300" height='250'>
+                </div>
           </div>
-          <!--Display news Article images  -->
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <img src="{{image_item.image.url}}" class="img-responsive" alt="Image">
-          </div>
+               
+          <!-- .modal-profile -->
+        <div class="modal fade modal-profile" tabindex="-1" role="dialog" aria-labelledby="modalProfile" id="{{image.id}}" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                              <div class="modal-header">
+                                    <button class="close" type="button" data-dismiss="modal">×</button>
+                                    <h3 class="modal-title">{{image.name}}</h3>
+                              </div>
+                              <div class="modal-body" >
+                                    <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid text-center " style= "width:100%;height:auto;">
+                                    <p style= 'color:black ; padding-top: 5%; margin-left:25%;'><strong>Description: </strong> {{image.description}}</p>
+                                    <p  style= 'color:black; margin-left:25%;'><strong>Location:</strong> {{image.location_taken}}</p>
+                                    <p style= 'color:black; margin-left:25%;'> <strong>Category:</strong> : {{image.image_category}}</p>
+                              </div>
+                              <div class="modal-footer">
+                                    <input class="form-control input-lg" type="text"
+                                         value="https://esimages.herokuapp.com{{image.image.url}}" id="{{image.id}}.url">
+                                     <button class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">Copy</button>
+                                    
+                                     
+                                 </div>
+                              
+                        </div>
+            
+                  </div>
+            </div>
+            <!-- //.modal-profile -->
+            {% endfor%}
+            
+    </div>
+    {% endif %}
+   
 
-      
-        </div>
-      
-        {% empty %}
-        <div class="row">
-          <h2 class="text-center">There No Image Items</h2>
-        </div>
-        {% endfor %}
-      
-      </div>
-      
+    
+
+
+</div>
 
 {% endblock %}
