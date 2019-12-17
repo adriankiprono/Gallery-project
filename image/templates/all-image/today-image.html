@@ -2,63 +2,53 @@
 
 {% block content %}
 {{block.super}}
-
-
-<h1 class="text-center" >ALL IMAGES</h1>
 <div class="container">
-    
-  {%if images%}
-  
-    
-    <div class="row">
-
-      
-        {% for image in images %}
-            
-          <div class="col-md-4 pt"  data-toggle="modal" data-target="#{{image.id}}" >
-                <div class="card "  style="width:16rem;">
-                   <img src="{{image.image.url}}" alt="{{image.image.image_name}}"   class="card-img-top"  width="300" height='250'>
-                   <p>{{image.image_name}}</p><br>
-                   <p>{{image.location}}</p>
-                </div>
-          </div>
-               
-          <!-- .modal-profile -->
-        <div class="modal fade modal-profile" tabindex="-1" role="dialog" aria-labelledby="modalProfile" id="{{image.id}}" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                              <div class="modal-header">
-                                    <button class="close" type="button" data-dismiss="modal">×</button>
-                                    <h3 class="modal-title">{{image.image_name}}</h3>
-                              </div>
-                              <div class="modal-body" >
-                                    <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid text-center " style= "width:100%;height:auto;">
-                                    <p style= 'color:black ; padding-top: 5%; margin-left:25%;'><strong>Description: </strong> {{image.description}}</p>
-                                    <p  style= 'color:black; margin-left:25%;'><strong>Location:</strong> {{image.location_taken}}</p>
-                                    <p style= 'color:black; margin-left:25%;'> <strong>Category:</strong> : {{image.image_category}}</p>
-                              </div>
-                              <div class="modal-footer">
-                                    <input class="form-control input-lg" type="text"
-                                         value="https://esimages.herokuapp.com{{image.image.url}}" id="{{image.id}}.url">
-                                     <button class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">Copy</button>
-                                    
-                                     
-                                 </div>
-                              
-                        </div>
-            
-                  </div>
-            </div>
-            <!-- //.modal-profile -->
-            {% endfor%}
-            
+  <div class="row">
+      {% for image in images %}
+    <div class="col-md-4">
+      <div class="card mt-4">
+        <div class="card-header text-center">
+            <h2> {{ image.image_name }} </h2>
+        </div>
+        <div class="">
+            <img src="{{image.image.url}}" alt="{{image.image_name}}" class="img-responsive img-fluid" data-toggle="modal" data-target="#extraModal{{image.id}}" style="width: 100%; height: 200px;">
+        </div>
+            <div class="card-title">
+                <h4>{{image.image_location}}</h4>
+                <h4 style="color:blue">{{image.image_description }}</h4>
+              </div>
+      </div>
     </div>
-    {% endif %}
-   
-
-    
-
-
+     <!-- Modal -->
+     <div class="modal fade" id="extraModal{{image.id}}" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-scrollable" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalScrollableTitle">{{ image.image_name }}</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+           <div class="card" style="width: 18rem;">
+             <img src="{{ image.image.url }}" class="card-img-top" alt="...">
+             <div class="card-body">
+               <h5 class="card-title">{{image.location}}</h5>
+               <p class="card-text">{{image.image_description }}.</p>
+               <input type="text" value="{{image.image.url}}" id="cpaste" class="form-control">
+             </div>
+           </div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           <button type="button" class="btn btn-primary">Copy</button>
+         </div>
+       </div>
+     </div>
+   </div>
+    {% endfor %}
+  </div>
 </div>
+  {% endblock %}
 
-{% endblock %}
