@@ -1,4 +1,12 @@
 h1
 {
-  color: green;
+  color: rgb(227, 236, 227);
+  font-family: monospace;
+  text-decoration: underline;
+
+}
+body{
+    background-image: url('https://cdn.pixabay.com/photo/2016/12/13/00/13/rabbit-1903016_1280.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }

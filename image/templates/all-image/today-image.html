@@ -2,7 +2,7 @@
 
 {% block content %}
 {{block.super}}
-<div class="container">
+<div class="container-fluid">
   <div class="row">
       {% for image in images %}
     <div class="col-md-4">
@@ -31,11 +31,11 @@
            </button>
          </div>
          <div class="modal-body">
-           <div class="card" style="width: 18rem;">
-             <img src="{{ image.image.url }}" class="card-img-top" alt="...">
+           <div class="card" style="width: 18rem;" >
+             <img src="{{ image.image.url }}" class="card-img-top" alt="..." >
              <div class="card-body">
                <h5 class="card-title">{{image.location}}</h5>
-               <p class="card-text">{{image.image_description }}.</p>
+               <p class="card-text">{{image.image_descprition }}</p>
                <input type="text" value="{{image.image.url}}" id="selcopas" class="form-control">
              </div>
            </div>
