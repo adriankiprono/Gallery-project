@@ -27,6 +27,7 @@ class Location(models.Model):
         return self.loc_name
 class Image(models.Model):
 
+    image = models.ImageField(upload_to='images/',default='image')
     image_name = models.CharField(max_length=30)
     image_descprition = models.CharField(max_length=150)
     location = models.ForeignKey(Location,on_delete=models.CASCADE)
