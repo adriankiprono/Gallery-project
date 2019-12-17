@@ -1,8 +1,5 @@
 from django.db import models
 import datetime as dt
-
-
-
 # Create your models here.
 
 class Category(models.Model):
@@ -29,7 +26,7 @@ class Location(models.Model):
     def __str__(self):
         return self.loc_name
 class Image(models.Model):
-    
+
     image_name = models.CharField(max_length=30)
     image_descprition = models.CharField(max_length=150)
     location = models.ForeignKey(Location,on_delete=models.CASCADE)
@@ -39,35 +36,26 @@ class Image(models.Model):
     @classmethod
     def todays_image(cls):
         today = dt.date.today()
-        images = cls.objects.filter(pub_date__date = today)
+        images = cls.objects.all()
         return images
     @classmethod
     def days_image(cls,date):
         images = cls.objects.filter(pub_date__date = date)
         return images
     @classmethod
-    def search_image(cls,search_term):
-
-        Category = Category.objects.filter(name__icontains = search_term)
-        pic_results= cls.objects.filter(category_id=category)
-        
-        return pic_results
-    
-    
+    def search_by_title(cls,search_term):
+        images = cls.objects.filter(title__icontains=search_term)
+        return images
     @classmethod
     def filter_by_location(cls,location):
-        
         images_locs = cls.objects.filter(location__loc_name=location)
-        
         return images_locs
     
     def save_image(self):
         self.save()
         
     def delete_image(self):
-        self.delete()
-        
-
+        self.delete() 
     def __str__(self):
         return self.image_name
     class Meta:
