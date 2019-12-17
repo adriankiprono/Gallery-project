@@ -42,7 +42,10 @@
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-           
+           <input class="form-control input-lg" type="text"
+                value="https://esimages.herokuapp.com{{image.image.url}}" id="{{image.id}}.url">
+            <button class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">Copy</button>
+                                    
          </div>
        </div>
      </div>
