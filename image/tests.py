@@ -7,27 +7,27 @@ import datetime as dt
 class LocationTestClass(TestCase):
     
     def setUp(self):
-        self.james = Location(loc_name = 'nakuru', id=1)
+        self.king = Location(loc_name = 'kakamega', id=1)
         
         
   #Testing instance
     
     def test_instance(self):
-        self.assertTrue(isinstance(self.james,Location)) 
+        self.assertTrue(isinstance(self.king,Location)) 
 
     def test_save_method(self):
-        self.james.save_loc()
+        self.king.save_loc()
         editors = Location.objects.all()
         self.assertTrue(len(editors)>0)
         
     def test_delete_method(self):
-        self.james.delete_loc()
+        self.king.delete_loc()
         locations = Location.objects.all()
         self.assertTrue(len(locations) is 0)
         
     def test_display_all(self):
-        dan = Location(loc_name='uganda')
-        dan.save_loc()
+        kong = Location(loc_name='texas')
+        kong.save_loc()
         self.james.save_loc()
         locations = Location.objects.all()
         print(len(locations))
@@ -42,7 +42,7 @@ class LocationTestClass(TestCase):
 class CategoryTestClass(TestCase):
     
     def setUp(self):
-        self.category = Category(name = 'dan', id=1)
+        self.category = Category(name = 'kong', id=1)
         
         
   #Testing instance
@@ -61,7 +61,7 @@ class CategoryTestClass(TestCase):
         self.assertTrue(len(cat) is 0)
         
     def test_display_all(self):
-        dan = Category(name='general')
+        dan = Category(name='animal')
         dan.save_category()
         one = Category.objects.all()
         print(len(one))
@@ -77,13 +77,13 @@ class CategoryTestClass(TestCase):
 class ImageTestClass(TestCase):
     
     def setUp(self):
-        self.nakuru = Location(loc_name='nakuru')
-        self.nature = Category(name='general')
-        self.image = Image(image='images/lagoon.jpeg',image_name='dan', image_descprition='he is cool',location=self.nakuru,category=self.nature, id=1)
+        self.kakamega = Location(loc_name='kakamega')
+        self.nature = Category(name='plant')
+        self.image = Image(image='images/lagoon.jpeg',image_name='kong', image_descprition='he is cool',location=self.kakamega,category=self.plant, id=1)
         
     def test_instance(self):
         self.assertTrue(isinstance(self.image,Image))
-    def test_get_news_today(self):
+    def test_get_image_today(self):
         today_image = Article.todays_images()
         self.assertTrue(len(today_images)>0)
     
