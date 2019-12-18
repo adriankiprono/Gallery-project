@@ -8,7 +8,7 @@ This is a website that enables one to view various images that interests them an
  ### DESCRIPTION
  - This  website enables you to view different categories of images. Allowing you to view and upon clicking on it , expands to see more details about it 
  - You can copy the images link and share it
- 
+
 
  
 ## Installing 
@@ -37,4 +37,4 @@ To view the application go to [click here]( https://adrianogallery.herokuapp.com
 >You can check out the license [click here](LICENSE)
 This project is licensed under the terms of **MIT**
 
-Copyright (c) 2019 **Daniel Evans Karani**
+Copyright (c) 2019 **adrian  kiprono**
