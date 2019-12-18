@@ -5,15 +5,15 @@ This is a website that enables one to view various images that interests them an
 
  Adrian Kiprono 
 
- # Behaviour Driven Development(BDD)
+ ### DESCRIPTION
+ - This  website enables you to view different categories of images. Allowing you to view and upon clicking on it , expands to see more details about it 
+ - You can copy the images link and share it
+ 
 
- | Behaviour                  | Input                  | Output                                             |
-| ------------------------    |:----------------------:| --------------------------------------------------:|
-| Load the application        | click on the a image   | Shows the details of the photo.|
-|filter by location           | select the location you want to view photo from|display the location's images|  |search by category           | input category & click search|display the categor's images.
+ 
 ## Installing 
 
-To view the application go to [click here](  )
+To view the application go to [click here]( https://adrianogallery.herokuapp.com/ )
 
 - Step 1: Clone this repo :git clone (https://github.com/adriankiprono/Gallery-project.git)
 
